@@ -1,0 +1,23 @@
+name: hello world
+
+on:
+  push:
+    branches: [main]
+
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: hello custom workflow
+        uses: osman-butt/hello-action@v0.1.0
+        with:
+          who-to-greet: 'Osman'
+
+
+      - name: Another shell command
+        run: | 
+          mkdir text
+          echo "HELLO WORLD FROM GITHUB ACTION" > text/output.txt
