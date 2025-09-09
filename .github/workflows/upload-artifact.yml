@@ -1,0 +1,32 @@
+name: Upload JAR Artifact
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Setup JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Build JAR FILE
+        run: mvn clean package -Dskiptests
+
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: target/*.jar
+          name: app.jar
+
+
+
